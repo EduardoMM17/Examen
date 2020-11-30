@@ -68,4 +68,22 @@ export class OrderService {
         return {idOrder: uuid(), orderNumber: orderNumber.toString()};
     }
 
+    async getListForUser(token: string){
+        const userFound = await this.userRepository.findOne({token});
+        if(!userFound){
+            throw new UnauthorizedException('Invalid credentials');
+        }
+        const userForOrder: UserForOrder = {
+            idUsuario: userFound._id.toString(),
+            email: userFound.email,
+            telephone: userFound.telephone,
+        }
+
+        const ordersInfoStored = await this.orderRepository.findOne({'usuario': userForOrder});
+        const orders = ordersInfoStored.orders;
+
+        return { usuario: userForOrder, orders};
+
+    }
+
 }
