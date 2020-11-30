@@ -1,0 +1,26 @@
+<h2>Create the order!</h2>
+
+<div class="container table-responsive">
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th class="align-middle" scope="col">Name</th>
+                <th class="align-middle" scope="col">Price</th>
+                <th class="align-middle" scope="col">Quantity</th> 
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr *ngFor="let item of itemsArr; let i = index" class="text-center">
+                <td class="align-middle">{{ item.name }} </td>
+                <td class="align-middle">{{ item.price }} </td>
+                <td class="align-middle">
+                    <input (keyup)="onKey($event)" placeholder="0">
+                    <button (click)="add(item)">Add</button>
+                </td>
+                <td class="align-middle" scope="col">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button (click)="createOrder()">Create order</button>

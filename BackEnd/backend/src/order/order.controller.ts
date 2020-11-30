@@ -10,7 +10,8 @@ export class OrderController {
 
     @Post('/create')
     async createOrder(@Body() orderRequestDto: OrderRequestDto) {
-        return this.orderService.createOrder(orderRequestDto); 
+        const res = await this.orderService.createOrder(orderRequestDto)
+        return {res}; 
     }
 
     @Get('/list-for-user/:token')

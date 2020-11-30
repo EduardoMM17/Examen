@@ -35,7 +35,7 @@ export class CreateUserComponent implements OnInit {
     }
     const body: UserCredentials = this.createUserForm.value;
     this.createUserService.createUser(body).subscribe(response =>{
-      console.log(response);
+      localStorage.setItem('token',response.res);
     })
   }
 }

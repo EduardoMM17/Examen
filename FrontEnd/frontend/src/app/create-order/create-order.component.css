@@ -1,0 +1,9 @@
+.table-responsive {
+  max-height: 80vh;
+  overflow: auto;
+  max-width: 100vw !important;
+}
+
+h1 {
+  color: blueviolet;
+}
