@@ -1,0 +1,26 @@
+<h2>Get Info!</h2>
+
+<div class="container table-responsive">
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th class="align-middle" scope="col">Email</th>
+                <th class="align-middle" scope="col">Telephone</th>
+                <th class="align-middle" scope="col">Order</th>
+                <th class="align-middle" scope="col">Create</th>
+                <th class="align-middle" scope="col">Quantity</th>
+                <th class="align-middle" scope="col">Total</th> 
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr *ngFor="let row of rows" class="text-center">
+                <td class="align-middle">{{ row.email }} </td>
+                <td class="align-middle">{{ row.telephone }} </td>
+                <td class="align-middle">{{ row.order }} </td>
+                <td class="align-middle">{{ row.create }} </td>
+                <td class="align-middle">{{ row.quantity }} </td>
+                <td class="align-middle">S/ {{ row.total }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

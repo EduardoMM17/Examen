@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
+import { GetOrderInfoComponent } from './get-order-info/get-order-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateUserComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    GetOrderInfoComponent
   ],
   imports: [
     BrowserModule,

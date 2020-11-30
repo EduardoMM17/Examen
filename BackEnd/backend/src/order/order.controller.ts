@@ -16,6 +16,7 @@ export class OrderController {
 
     @Get('/list-for-user/:token')
     async getListForUser(@Param('token') token: string){
-        return this.orderService.getListForUser(token);
+        const res = await this.orderService.getListForUser(token);
+        return {res};
     }
 }
