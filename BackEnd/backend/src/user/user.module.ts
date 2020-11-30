@@ -5,15 +5,13 @@ import { User } from './user.entity';
 import { UserService } from './user.service';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { Order } from 'src/order/order.entity';
 
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt'}),
     JwtModule.register({
       secret: 'ContraseñaSecreta',
-      signOptions: {
-        expiresIn: 3600,
-      }
     }),
     TypeOrmModule.forFeature([User]),
   ],

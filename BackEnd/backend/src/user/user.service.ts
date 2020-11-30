@@ -25,7 +25,7 @@ export class UserService {
         const payload: JwtPayload = { email, firstName, lastName, telephone};
         const jwtToken = await this.jwtService.sign(payload);
         user.token = jwtToken;
-        const savedUser = await this.userRepository.save(user);
+        await this.userRepository.save(user);
         return jwtToken;
     }
 

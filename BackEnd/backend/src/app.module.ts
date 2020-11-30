@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/user.entity';
+import { OrderModule } from './order/order.module';
+import { Order } from './order/order.entity';
 
 @Module({
   imports: [
@@ -10,9 +12,10 @@ import { User } from './user/user.entity';
       url: 'mongodb://localhost/examen',
       synchronize: true,
       useUnifiedTopology: true,
-      entities: [User],
+      entities: [User, Order],
     }),
-    UserModule
+    UserModule,
+    OrderModule
   ]
 })
 export class AppModule {}
