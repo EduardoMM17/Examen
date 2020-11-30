@@ -1,30 +1,30 @@
 [{
-    "idItem": { "$oid": "5f93035acc509aab0d8d145a"},
+    "idItem": { "oid": "5f93035acc509aab0d8d145a"},
     "name": "Arroz con Pollo",
     "price": 10.99
 },
 {
-    "idItem": { "$oid": "5f93035acc509aab0d8d145b"},
+    "idItem": { "oid": "5f93035acc509aab0d8d145b"},
     "name": "Arroz con Pato",
     "price": 9.99
 },
 {
-    "idItem": { "$oid": "5f93035acc509aab0d8d145c"},
+    "idItem": { "oid": "5f93035acc509aab0d8d145c"},
     "name": "Ceviche",
     "price": 12.99
 },
 {
-    "idItem": { "$oid": "5f93035acc509aab0d8d145d"},
+    "idItem": { "oid": "5f93035acc509aab0d8d145d"},
     "name": "Chaufa de pescado",
     "price": 11.99
 },
 {
-    "idItem": { "$oid": "5f93035acc509aab0d8d145e"},
+    "idItem": { "oid": "5f93035acc509aab0d8d145e"},
     "name": "Lomo saltado",
     "price": 10.99
 },
 {
-    "idItem": { "$oid": "5f93035acc509aab0d8d145f"},
+    "idItem": { "oid": "5f93035acc509aab0d8d145f"},
     "name": "Tallarines verdes",
     "price": 13.99
 }]
