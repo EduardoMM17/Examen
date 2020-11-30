@@ -1,1 +1,30 @@
-<p>create-user works!</p>
+<h2>Create User!</h2>
+
+<form [formGroup]="createUserForm" ngNativeValidate>
+<div>
+    <label for="email">
+        Email
+    </label>
+    <input id="email" type="email" formControlName="email" required>
+</div>
+<div>
+    <label for="firstName">
+        FirstName
+    </label>
+    <input id="firstName" type="text" formControlName="firstName" required>
+</div>
+<div>
+    <label for="lastName">
+        lastName
+    </label>
+    <input id="lastName" type="text" formControlName="lastName" required>
+</div>
+<div>
+    <label for="telephone">
+        Telephone
+    </label>
+    <input id="telephone" type="number" formControlName="telephone" required>
+</div>
+
+<button class="button" (click)="createUser()" type="submit"> Create </button>
+</form>
