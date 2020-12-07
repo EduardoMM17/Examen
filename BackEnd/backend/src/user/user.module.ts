@@ -6,17 +6,18 @@ import { UserService } from './user.service';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { Order } from 'src/order/order.entity';
+import { JwtStrategy } from './jwt.strategy';
 
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt'}),
     JwtModule.register({
-      secret: 'ContraseñaSecreta',
+      secret: process.env.SECRET,
     }),
     TypeOrmModule.forFeature([User]),
   ],
   controllers: [UserController],
-  providers: [UserService],
-  exports: [UserService]
+  providers: [UserService, JwtStrategy],
+  exports: [UserService, JwtStrategy, PassportModule]
 })
 export class UserModule {}

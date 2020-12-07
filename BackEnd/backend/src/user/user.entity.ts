@@ -1,25 +1,29 @@
 import { Column, Entity, Index, ObjectIdColumn, Unique } from 'typeorm';
+import { Roles } from './roles.enum';
 
 @Entity()
 export class User {
-    @ObjectIdColumn()
-    _id: string;
+  @ObjectIdColumn()
+  _id: string;
 
-    @Index({ unique: true})
-    @Column()
-    email: string;
+  @Index({ unique: true })
+  @Column()
+  email: string;
 
-    @Index()
-    @Column()
-    firstName: string;
+  @Index()
+  @Column()
+  firstName: string;
 
-    @Column()
-    lastName: string;
+  @Column()
+  lastName: string;
 
-    @Column({ unique: true})
-    telephone: string;
+  @Column({ unique: true })
+  telephone: string;
 
-    @Index({ unique: true})
-    @Column()
-    token: string;
+  @Column()
+  role: Roles;
+
+  @Index({ unique: true })
+  @Column()
+  token: string;
 }

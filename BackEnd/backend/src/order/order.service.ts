@@ -7,8 +7,10 @@ import { Repository } from 'typeorm';
 import { UserForOrder, OrderInfo, Item } from './interfaces/all.interface';
 import { v4 as uuid} from 'uuid';
 import * as moment from 'moment';
+import { ResCreateOrderDto } from './dto/res-create-order.dto';
+import { ResGetListForUserDto } from './dto/res-get-list-for-user.dto';
 
-const itemsArray = require('../../../items.json');
+const itemsArr = require('../../../items.json');
 
 @Injectable()
 export class OrderService {
@@ -18,7 +20,7 @@ export class OrderService {
         @InjectRepository(Order) private orderRepository: Repository<Order>,
     ) {}
 
-    async createOrder(orderRequestDto: OrderRequestDto) {
+    async createOrder(orderRequestDto: OrderRequestDto): Promise<ResCreateOrderDto> {
         const { token, items } = orderRequestDto;
         const userFound = await this.userRepository.findOne({token});
         if(!userFound){
@@ -34,7 +36,7 @@ export class OrderService {
         let itemInfo;
         let itemOrderArray: Item[] = [];
         for(let i = 0; i < items.length; i++){
-            itemInfo = itemsArray.find(element => items[i].idItem === element.idItem.oid);
+            itemInfo = itemsArr.find(element => items[i].idItem === element.idItem.oid);
             itemInfo.quantity = items[i].quantity;
             itemOrderArray.push(itemInfo);
         }
@@ -65,10 +67,16 @@ export class OrderService {
 
         await this.orderRepository.save(order);
 
-        return {idOrder: uuid(), orderNumber: orderNumber.toString()};
+        const resCreateOrderDto: ResCreateOrderDto = {
+            idOrder: orderInfo.idOrder,
+            orderNumber: orderNumber.toString(),
+        }
+
+        return resCreateOrderDto;
     }
 
-    async getListForUser(token: string){
+    //Pasar por header autenticación 
+    async getListForUser(token: string): Promise<ResGetListForUserDto>{
         const userFound = await this.userRepository.findOne({token});
         if(!userFound){
             throw new UnauthorizedException('Invalid credentials');
@@ -82,7 +90,12 @@ export class OrderService {
         const ordersInfoStored = await this.orderRepository.findOne({'usuario': userForOrder});
         const orders = ordersInfoStored.orders;
 
-        return { usuario: userForOrder, orders};
+        const resGetListForUserDto: ResGetListForUserDto = {
+            usuario: userForOrder,
+            orders
+        }
+
+        return resGetListForUserDto;
 
     }
 
