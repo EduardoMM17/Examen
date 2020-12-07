@@ -24,10 +24,10 @@ export class UserController {
 
   @ApiOperation({ title: 'Get user' })
   @ApiBearerAuth()
-  @Get('/get-user/:email')
+  @Get('/get-user/:id')
   @UseGuards(AuthGuard())
-  async getUser(@Param('email') email: string): Promise<User> {
-    return await this.userService.getUser(email);
+  async getUser(@Param('id') id: string): Promise<User> {
+    return await this.userService.getUser(id);
   }
 
   @ApiOperation({ title: 'Update user' })
@@ -35,16 +35,16 @@ export class UserController {
   @Put('/update-user')
   @UseGuards(AuthGuard())
   async updateUser(@Body() Body) {
-    return await this.userService.updateUser(Body.email, Body.update);
+    return await this.userService.updateUser(Body.id, Body.update);
   }
 
   @ApiOperation({ title: 'Delete user' })
   @ApiBearerAuth()
-  @Delete('/delete-user/:email')
+  @Delete('/delete-user/:id')
   @UseGuards(AuthGuard())
-  async deleteUser(@Param('email') email: string, @Req() req) {
+  async deleteUser(@Param('id') id: string, @Req() req) {
     const authorizationHeaders = req.headers.authorization;
-    return await this.userService.deleteUser(email, authorizationHeaders);
+    return await this.userService.deleteUser(id, authorizationHeaders);
   }
 
   @ApiOperation({ title: 'Get All users' })

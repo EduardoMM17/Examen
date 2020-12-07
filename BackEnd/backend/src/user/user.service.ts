@@ -7,6 +7,7 @@ import { User } from './user.entity';
 import { JwtPayload } from './jwt-payload.interface';
 import { ResCreateUserDto } from './dto/res-create-user.dto';
 import { Roles } from './roles.enum';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class UserService {
@@ -40,25 +41,25 @@ export class UserService {
     throw new UnauthorizedException('Only ADMIN users can use this method.');
   }
 
-  async getUser(email: string): Promise<User> {
-    const user = await this.userRepository.findOne({ email });
+  async getUser(id: string): Promise<User> {
+    const user = await this.userRepository.findOne({ _id: new ObjectId(id) });
     if (!user) {
-      throw new NotFoundException(`User with ID ${email} not found`);
+      throw new NotFoundException(`User with ID ${id} not found`);
     }
 
     return user;
   }
 
-  async updateUser(email: string, update) {
-    return await this.userRepository.update({ email }, update);
+  async updateUser(id: string, update) {
+    return await this.userRepository.update({ _id: new ObjectId(id) }, update);
   }
 
-  async deleteUser(email: string, authorizationHeaders) {
+  async deleteUser(id: string, authorizationHeaders) {
     const token = authorizationHeaders.split(' ')[1];
     let payload = JSON.stringify(this.jwtService.decode(token));
     let payloadParsed = JSON.parse(payload);
     if (payloadParsed.role === Roles.ADMIN) {
-      return await this.userRepository.delete({ email });
+      return await this.userRepository.delete({ _id: new ObjectId(id) });
     }
 
     throw new UnauthorizedException('Only ADMIN users can use this method.');

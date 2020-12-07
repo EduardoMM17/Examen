@@ -1,10 +1,11 @@
+import { ObjectId } from 'mongodb';
 import { Column, Entity, Index, ObjectIdColumn, Unique } from 'typeorm';
 import { Roles } from './roles.enum';
 
 @Entity()
 export class User {
   @ObjectIdColumn()
-  _id: string;
+  _id: ObjectId;
 
   @Index({ unique: true })
   @Column()
